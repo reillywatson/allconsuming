@@ -13,20 +13,20 @@ import (
 type BookInfo struct {
 	Id string `json::id`
 	VolumeInfo struct {
-		Title string `json::Title`
-		Subtitle string `json::subtitle`
-		Authors []string `json::authors`
-		Description string `json::description`
+		Title string
+		Subtitle string
+		Authors []string
+		Description string
 		ImageLinks struct {
-			SmallThumbnail string `json::smallThumbnail`
-			Thumbnail string `json::thumbnail`
-		} `json::imageLinks`
-		CanonicalVolumeLink string `json::canonicalVolumeLink`
-	} `json::volumeInfo`
+			SmallThumbnail string
+			Thumbnail string
+		}
+		CanonicalVolumeLink string
+	}
 }
 
 type SearchResponse struct {
-	Items []BookInfo `json::items`
+	Items []BookInfo
 }
 
 func search(req *http.Request) string {
