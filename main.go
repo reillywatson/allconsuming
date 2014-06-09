@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -45,13 +46,15 @@ func search(req *http.Request) string {
 	if err != nil {
 		panic("whaaaaaaaaa!")
 	}
+	var response = "<html>"
 	for _, element := range m.Items {
 		title := element.VolumeInfo.Title
 		authors := strings.Join(element.VolumeInfo.Authors, ", ")
-		println(authors)
-		println(title)
+		response = response + fmt.Sprintf("<p>title: %s<br/>", title)
+		response = response + fmt.Sprintf("author: %s</p>", authors)
 	}
-	return "go"
+	response = response + "</html>"
+	return response
 }
 
 func main() {
