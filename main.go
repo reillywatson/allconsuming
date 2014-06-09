@@ -48,12 +48,14 @@ func search(req *http.Request) string {
 	}
 	var response = "<html>"
 	for _, element := range m.Items {
-		title := element.VolumeInfo.Title
+		response += fmt.Sprintf("<a href=\"%s\">", element.VolumeInfo.CanonicalVolumeLink)
+		response += fmt.Sprintf("<img src=\"%s\"/>", element.VolumeInfo.ImageLinks.SmallThumbnail)
+		response += "</a>"
+		response += fmt.Sprintf("<p>%s<br/>", element.VolumeInfo.Title)
 		authors := strings.Join(element.VolumeInfo.Authors, ", ")
-		response = response + fmt.Sprintf("<p>title: %s<br/>", title)
-		response = response + fmt.Sprintf("author: %s</p>", authors)
+		response += fmt.Sprintf("%s</p>", authors)
 	}
-	response = response + "</html>"
+	response += "</html>"
 	return response
 }
 
